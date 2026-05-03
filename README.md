@@ -1,42 +1,147 @@
-# Microservice Architecture example using Reactjs(Nextjs) Express Redis and Mysql 
+# TaskFlow Pro 🚀
 
-## Introduction
+## Scalable Microservice-Based Task Management Platform
 
-<figure > 
+TaskFlow Pro is a modern full-stack task management platform built using a distributed microservice architecture. The application demonstrates scalable backend communication, Redis-based caching, asynchronous worker processing, containerized deployment, and optimized data handling using MySQL.
+
+The project was developed to understand how real-world scalable systems handle API communication, caching, database operations, and service orchestration across multiple independent services.
+
+---
+
+# ✨ Features
+
+- Scalable microservice architecture
+- RESTful API communication
+- Redis caching integration
+- Redis Pub/Sub messaging
+- Dockerized multi-container deployment
+- MySQL persistent database storage
+- Responsive Next.js frontend
+- Background worker service
+- Distributed service communication
+- Backend performance optimization
+
+---
+
+# 🛠️ Tech Stack
+
+| Technology | Purpose |
+|---|---|
+| ReactJS / Next.js | Frontend UI |
+| Node.js / Express | Backend APIs |
+| Redis | Caching & Pub/Sub |
+| MySQL | Database |
+| Docker & Docker Compose | Containerization |
+| REST APIs | Service Communication |
+
+---
+
+# 🏗️ System Architecture
+
 <p align="center">
-  <img src="./assets/dataflow_diagram.jpg" alt="Dataflow Diagram" style="background-color:white" />
-  <p align="center">Dataflow Diagram</p> 
+  <img src="./assets/dataflow_diagram.jpg" width="850" />
 </p>
-</figure>
 
-Explanation:
+<p align="center">
+  Distributed Microservice Architecture Workflow
+</p>
 
-1. The nextjs client is the front end of the application and it communicates with the express backend service to get and post data to the worker server and the mysql database.
+---
 
-1. The express backend service is the middle layer of the application. When it receives a post request from the nextjs frontend, it publishes a message to the redis pub/sub. When it receives a get request from the nextjs frontend, it checks the redis cache for the data. If the data is not in the redis cache, it sends a request to the database to get the data and caches the data in the redis cache for future requests. If the data is in the redis cache, it sends the data to the nextjs frontend. It is also responsible for sending responses to the nextjs frontend.
+# 📸 Application Screenshots
 
-1. The worker server is a microservice that subscribes to the redis pub/sub and receives messages from the backend service when a post request is made from the nextjs frontend. It is responsible for sending requests to the mysql database to store the data.
+## Dashboard Interface
 
-Components:
+<p align="center">
+  <img src="./assets/dashboard.png" width="850" />
+</p>
 
-1. Frontend service by Nextjs
-1. Backend service by Express
-1. Worker (Nodejs) Server
-1. Redis Cache and Pub/Sub
-1. MySQL Database
- 
+---
 
-You can try it out yourself by cloning the repository and following the instructions below.
+## Task Creation & Redis Cache Response
+
+<p align="center">
+  <img src="./assets/cache-response.png" width="850" />
+</p>
+
+---
+
+## Docker Container Execution
+
+<p align="center">
+  <img src="./assets/docker-containers.png" width="850" />
+</p>
+
+---
+
+# ⚙️ Architecture Overview
+
+## Frontend Service (Next.js)
+
+The frontend application provides an interactive task management interface and communicates with backend APIs to create and retrieve tasks.
+
+Responsibilities:
+- User interaction
+- API communication
+- Dynamic UI rendering
+- Responsive design
+
+---
+
+## Backend Service (Express.js)
+
+The backend acts as the communication layer between frontend, Redis cache, worker-service, and MySQL database.
+
+Responsibilities:
+- Handle REST API requests
+- Implement Redis caching
+- Publish Redis Pub/Sub messages
+- Process incoming client requests
+- Reduce database load
+
+---
+
+## Worker Service
+
+The worker-service listens to Redis Pub/Sub channels and processes asynchronous database operations.
+
+Responsibilities:
+- Background task processing
+- MySQL data insertion
+- Distributed event handling
+
+---
+
+## Redis Cache & Pub/Sub
+
+Redis is used for:
+- High-speed caching
+- Faster API response time
+- Pub/Sub communication
+- Reducing repeated database queries
+
+---
+
+## MySQL Database
+
+MySQL stores application task data and provides persistent storage for the platform.
+
+---
+
+# 🐳 Dockerized Deployment
+
+All services are containerized using Docker Compose for:
+- Independent service execution
+- Simplified deployment
+- Scalable architecture
+- Environment consistency
+
+---
+
+# 🚀 Getting Started
+
+## Clone Repository
 
 ```bash
-git clone https://github.com/titocbd/microservice-architecture-example-using-reactjs-express-redis-and-mysql
-cd microservice-architecture-example-using-reactjs-express-redis-and-mysql
-docker-compose build
-docker-compose up
-```
-
-Now visit:
-http://localhost:3000/
-
-
-Thanks for reading!
+git clone https://github.com/YOUR_USERNAME/taskflow-pro.git
+cd taskflow-pro

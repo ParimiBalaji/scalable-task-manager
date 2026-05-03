@@ -2,8 +2,9 @@ import { useState } from "react";
 import axios from "axios";
 
 export default function Home() {
-  const [value, updateValue] = useState("create new data");
+  const [value, updateValue] = useState("No tasks available");
   const [input, setInput] = useState("");
+
   const baseUrl = "http://localhost:5001";
   const getDataUrl = `${baseUrl}/data`;
   const createDataUrl = `${baseUrl}/create`;
@@ -21,7 +22,10 @@ export default function Home() {
 
   const createData = async (inputText) => {
     try {
-      const { data } = await axios.post(createDataUrl, { data: inputText });
+      const { data } = await axios.post(createDataUrl, {
+        data: inputText,
+      });
+
       console.log({ message: "posted data", data });
       return data;
     } catch (error) {
@@ -31,35 +35,153 @@ export default function Home() {
 
   const handleSubmit = async (evt) => {
     evt.preventDefault();
+
+    if (!input.trim()) return;
+
     await createData(input);
+
     setInput("");
   };
 
   return (
-    <main style={{ display: "grid", placeItems: "center", height: "50vh" }}>
-      <section style={{ zoom: "1.2", display: "grid", placeItems: "center" }}>
-      <h2 style={{ textAlign: "center" }}>Service Demo</h2>
-        <form onSubmit={handleSubmit}>
+    <main
+      style={{
+        display: "grid",
+        placeItems: "center",
+        minHeight: "100vh",
+        background: "linear-gradient(to right, #0f172a, #111827)",
+        color: "white",
+        padding: "20px",
+        fontFamily: "sans-serif",
+      }}
+    >
+      <section
+        style={{
+          width: "100%",
+          maxWidth: "700px",
+          backgroundColor: "#1e293b",
+          padding: "40px",
+          borderRadius: "14px",
+          boxShadow: "0px 4px 20px rgba(0,0,0,0.4)",
+        }}
+      >
+        <h1
+          style={{
+            textAlign: "center",
+            fontSize: "3rem",
+            marginBottom: "10px",
+          }}
+        >
+          TaskFlow Pro
+        </h1>
+
+        <p
+          style={{
+            textAlign: "center",
+            color: "#cbd5e1",
+            marginBottom: "30px",
+            lineHeight: "1.6",
+          }}
+        >
+          Scalable microservice-based task management platform powered by
+          Redis caching, MySQL, Dockerized backend services, and distributed
+          architecture.
+        </p>
+
+        <form
+          onSubmit={handleSubmit}
+          style={{
+            display: "flex",
+            gap: "10px",
+            justifyContent: "center",
+            flexWrap: "wrap",
+          }}
+        >
           <input
             type="text"
-            placeholder="Please write something"
+            placeholder="Enter task title..."
             value={input}
             onChange={(evt) => setInput(evt.target.value)}
-          /> 
-          <input type="submit" value="Insert" />
+            style={{
+              padding: "12px",
+              width: "320px",
+              borderRadius: "8px",
+              border: "1px solid #475569",
+              outline: "none",
+              fontSize: "15px",
+            }}
+          />
+
+          <button
+            type="submit"
+            style={{
+              padding: "12px 20px",
+              backgroundColor: "#2563eb",
+              color: "white",
+              border: "none",
+              borderRadius: "8px",
+              cursor: "pointer",
+              fontWeight: "bold",
+              fontSize: "15px",
+            }}
+          >
+            Create Task
+          </button>
         </form>
-        <button onClick={getData} style={{ margin: "1rem 0" }}>
-          Get data
-        </button>
-        <p style={{ textAlign: "justify" }}>
-          Try creating a data using input. Then click on "get data" twice to see
-          the magic. Keep an eye on the isCached property when you input new
-          data.
-        </p>
-      </section>
-      <section style={{ height: "30vh" }}>
-        <h3 style={{ textAlign: "center" }}>Output</h3>
-        <pre>{JSON.stringify(value, null, 2)}</pre>
+
+        <div
+          style={{
+            display: "flex",
+            justifyContent: "center",
+            marginTop: "20px",
+          }}
+        >
+          <button
+            onClick={getData}
+            style={{
+              padding: "12px 20px",
+              backgroundColor: "#16a34a",
+              color: "white",
+              border: "none",
+              borderRadius: "8px",
+              cursor: "pointer",
+              fontWeight: "bold",
+              fontSize: "15px",
+            }}
+          >
+            Load Tasks
+          </button>
+        </div>
+
+        <div
+          style={{
+            marginTop: "40px",
+            backgroundColor: "#0f172a",
+            padding: "20px",
+            borderRadius: "10px",
+          }}
+        >
+          <h3
+            style={{
+              textAlign: "center",
+              marginBottom: "20px",
+              color: "#38bdf8",
+            }}
+          >
+            Recent Tasks
+          </h3>
+
+          <pre
+            style={{
+              whiteSpace: "pre-wrap",
+              overflowWrap: "break-word",
+              color: "#e2e8f0",
+              lineHeight: "1.5",
+            }}
+          >
+            {JSON.stringify(value, null, 2)}
+          </pre>
+        </div>
       </section>
     </main>
   );
