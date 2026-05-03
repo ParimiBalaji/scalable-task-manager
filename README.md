@@ -137,5 +137,5 @@ All services are containerized using Docker Compose for:
 ## Clone Repository
 
 ```bash
-git clone https://github.com/YOUR_USERNAME/taskflow-pro.git
-cd taskflow-pro
+git clone https://github.com/ParimiBalaji/scalable-task-manager.git
+cd scalable-task-manager
