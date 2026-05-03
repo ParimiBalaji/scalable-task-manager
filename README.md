@@ -49,19 +49,12 @@ The project was developed to understand how real-world scalable systems handle A
 ---
 
 # 📸 Application Screenshots
-
-## Dashboard Interface
-
-<p align="center">
-  <img src="./assets/dashboard.png" width="850" />
-</p>
-
----
-
-## Task Creation & Redis Cache Response
+ 
+Task Creation & Redis Cache Response
 
 <p align="center">
-  <img src="./assets/cache-response.png" width="850" />
+  <img width="797" height="852" alt="Screenshot 2026-05-03 143732" src="https://github.com/user-attachments/assets/5b6a11b4-7da4-4ef6-a6f2-5de1d1087992" />
+
 </p>
 
 ---
@@ -69,7 +62,8 @@ The project was developed to understand how real-world scalable systems handle A
 ## Docker Container Execution
 
 <p align="center">
-  <img src="./assets/docker-containers.png" width="850" />
+  <img width="1909" height="1018" alt="Screenshot 2026-05-03 143349" src="https://github.com/user-attachments/assets/2efd30ba-89eb-4841-89d5-28f1753c8b5f" />
+
 </p>
 
 ---
